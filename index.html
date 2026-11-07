@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slideshow</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0010;
+  }
+  .slider {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.6s ease-in-out;
+    will-change: opacity, transform;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .slide.active {
+    opacity: 1;
+    animation: zoom 8s ease-out forwards;
+  }
+  @keyframes zoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.04); }
+  }
+</style>
+</head>
+<body>
+  <div class="slider" id="slider">
+    <img class="slide active" src="imagem1.png" alt="">
+    <img class="slide" src="imagem2.png" alt="">
+    <img class="slide" src="imagem3.png" alt="">
+    <img class="slide" src="imagem4.png" alt="">
+  </div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const INTERVALO = 5000; // tempo de cada imagem (ms)
+  let atual = 0;
+
+  setInterval(() => {
+    const proximo = (atual + 1) % slides.length;
+    slides[proximo].classList.add('active');
+    slides[atual].classList.remove('active');
+    atual = proximo;
+  }, INTERVALO);
+</script>
+</body>
+</html>
