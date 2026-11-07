@@ -24,19 +24,13 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(1);
     transition: opacity 1.6s ease-in-out;
-    will-change: opacity, transform;
+    will-change: opacity;
     user-select: none;
     -webkit-user-drag: none;
   }
   .slide.active {
     opacity: 1;
-    animation: zoom 8s ease-out forwards;
-  }
-  @keyframes zoom {
-    from { transform: scale(1); }
-    to   { transform: scale(1.04); }
   }
 </style>
 </head>
